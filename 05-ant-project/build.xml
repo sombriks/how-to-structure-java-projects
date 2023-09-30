@@ -1,0 +1,27 @@
+<project name="05-ant-project" default="dist" basedir=".">
+    <description>
+        ant-managed project
+    </description>
+    <target name="init">
+        <mkdir dir="target"/>
+        <mkdir dir="bin"/>
+    </target>
+    <target name="build" depends="init">
+        <javac srcdir="src" destdir="bin">
+            <classpath>
+                <fileset dir="lib">
+                    <include name="*.jar"/>
+                </fileset>
+                <pathelement path="bin"/>
+            </classpath>
+        </javac>
+    </target>
+    <target name="dist" depends="build">
+        <jar basedir="bin" jarfile="target/star-wars-3.jar" manifest="src/META-INF/MANIFEST.MF"/>
+        <copy file="lib/gson-2.10.1.jar" tofile="target/gson-2.10.1.jar"/>
+    </target>
+    <target name="clean">
+        <delete dir="bin"/>
+        <delete dir="target"/>
+    </target>
+</project>

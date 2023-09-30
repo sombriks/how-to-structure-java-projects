@@ -167,12 +167,28 @@ Imagine having hundreds of them, like enterprise java projects have!
 
 First attempt to have a higher level project configuration for java projects.
 
+You must create a [build.xml](05-ant-project/build.xml) file.
+
 ```bash
+cd 05-ant-project
+ant -v
+java -jar target/star-wars-3.jar
 ```
+
+Command line way cleaner, all complexity hidden inside another config file.
+
+But the problem is mostly moved to under the carpet, we still need to deal with
+large amounts of dependencies as the project grows, and suddenly a new problem
+appears: the proper version among dependencies inside lib folder. 
+
+Also, files that aren't exactly source code appears in the project and we need
+to deal with them as well.
 
 ## 06-maven-project
 
-When things got complicated
+Maven is when things get a little complicated. It is more declarative than
+imperative (ant has his tasks grouped inside targets) and enforces a very
+specific folder structure. It needs internet to work properly
 
 ```bash
 ```

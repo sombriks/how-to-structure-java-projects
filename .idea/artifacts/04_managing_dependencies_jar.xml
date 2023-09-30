@@ -1,8 +1,8 @@
 <component name="ArtifactManager">
   <artifact name="04-managing-dependencies:jar">
-    <output-path>$PROJECT_DIR$/out/artifacts/04_managing_dependencies_jar</output-path>
+    <output-path>$PROJECT_DIR$/04-managing-dependencies/target</output-path>
     <root id="root">
-      <element id="archive" name="star-wars-2.jar.jar">
+      <element id="archive" name="star-wars-2.jar">
         <element id="module-output" name="04-managing-dependencies" />
       </element>
       <element id="file-copy" path="$PROJECT_DIR$/04-managing-dependencies/lib/gson-2.10.1.jar" />

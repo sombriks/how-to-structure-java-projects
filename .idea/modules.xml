@@ -7,6 +7,7 @@
       <module fileurl="file://$PROJECT_DIR$/02-source-dest-folders/02-source-dest-folders.iml" filepath="$PROJECT_DIR$/02-source-dest-folders/02-source-dest-folders.iml" />
       <module fileurl="file://$PROJECT_DIR$/03-package-as-jar/03-package-as-jar.iml" filepath="$PROJECT_DIR$/03-package-as-jar/03-package-as-jar.iml" />
       <module fileurl="file://$PROJECT_DIR$/04-managing-dependencies/04-managing-dependencies.iml" filepath="$PROJECT_DIR$/04-managing-dependencies/04-managing-dependencies.iml" />
+      <module fileurl="file://$PROJECT_DIR$/05-ant-project/05-ant-project.iml" filepath="$PROJECT_DIR$/05-ant-project/05-ant-project.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/how-to-structure-java-projects.iml" filepath="$PROJECT_DIR$/.idea/how-to-structure-java-projects.iml" />
     </modules>
   </component>
