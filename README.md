@@ -26,7 +26,13 @@ target
 Just your single Java file with code inside. Zero drama but does not scale.
 
 ```bash
+cd 00-no-structure
+java HelloThere.java
 ```
+
+- create a folder
+- create your Java file
+- compile/run your file
 
 ## 01-some-files
 
@@ -34,7 +40,15 @@ A few Java files separating your code and concerns. Needs a better command line
 to compile.
 
 ```bash
+cd 01-some-files
+javac HelloThere.java
+java HelloThere
 ```
+
+- create a folder
+- create your files
+- compile your sources (by compiling the entrypoint all other files will be compiled too)
+- run your entrypoint (the class containing the main method)
 
 ## 02-source-dest-folders
 
@@ -42,13 +56,52 @@ Adding the idea of source and dest folders. Avoid possible collision with
 produced artifacts.
 
 ```bash
+cd 02-source-dest-folders
+javac -d bin -cp bin src/Grievous.java
+javac -d bin -cp bin src/HelloThere.java
+java -cp bin HelloThere
 ```
+
+- create a folder
+- create src and bin folders
+- create your files under src folder
+- compile your secondary classes first. Use that special command line
+- compile your entry point
+- run your entry point indicating the bin folder as classpath
 
 ## 03-package-as-jar
 
 The java way (:tm:) to distribute programs.
 
 ```bash
+cd 03-package-as-jar
+javac -d bin -cp bin src/Grievous.java
+javac -d bin -cp bin src/HelloThere.java
+jar cvf target/star-wars.jar -C bin . 
+java -cp target/star-wars.jar HelloThere
+```
+
+- create a folder
+- create src and bin folders
+- create your files under src folder
+- compile your secondary classes first. Use that special command line
+- compile your entry point
+- package your classes using the **jar** command
+- run your entry point indicating the jar file as classpath
+
+The `-C bin` part of this command directs the Jar tool to go to the bin
+directory, and the . following -C bin directs the Jar tool to archive all the
+contents of that directory.
+
+Another approach is to define a **main class** to the jar so anyone running the
+package need little knowledge of how your program work internally:
+
+```bash
+cd 03-package-as-jar
+javac -d bin -cp bin src/Grievous.java
+javac -d bin -cp bin src/HelloThere.java
+jar cvfe target/star-wars.jar HelloThere -C bin . 
+java -jar target/star-wars.jar
 ```
 
 ## 04-managing-dependencies
