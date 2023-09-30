@@ -1,0 +1,4 @@
+.vscode
+out
+/04-managing-dependencies/target/gson-2.10.1.jar
+/04-managing-dependencies/target/star-wars-2.jar

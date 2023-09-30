@@ -69,6 +69,9 @@ java -cp bin HelloThere
 - compile your entry point
 - run your entry point indicating the bin folder as classpath
 
+The project folder now acts as execution point, current working directory, among
+other names.
+
 ## 03-package-as-jar
 
 The java way (:tm:) to distribute programs.
@@ -93,8 +96,8 @@ The `-C bin` part of this command directs the Jar tool to go to the bin
 directory, and the . following -C bin directs the Jar tool to archive all the
 contents of that directory.
 
-Another approach is to define a **main class** to the jar so anyone running the
-package need little knowledge of how your program work internally:
+Another approach is to define a **Main-Class** to the jar so anyone running the
+package will need little knowledge of how your program work internally:
 
 ```bash
 cd 03-package-as-jar
@@ -106,10 +109,59 @@ java -jar target/star-wars.jar
 
 ## 04-managing-dependencies
 
-Using code from others so you don't reinvent the wheel.
+Using code from others, so you don't reinvent the wheel.
+
+Let's say we want to use
+[the Gson library](https://search.maven.org/artifact/com.google.code.gson/gson)
+to parse json data:
 
 ```bash
+cd 04-managing-dependencies
+javac -d bin -cp bin src/Item.java
+javac -d bin -cp bin src/Quotes.java
+javac -d bin -cp bin:lib/gson-2.10.1.jar src/Grievous.java
+javac -d bin -cp bin src/HelloThere.java
+jar cvfe target/star-wars-2.jar HelloThere -C bin . 
+java -cp lib/gson-2.10.1.jar:target/star-wars-2.jar HelloThere
 ```
+
+Now our command line to compile and run must take proper care of classpath
+composition.
+
+One alternative way to do that is to maintain a `MANIFEST.MF` file providing
+both **Main-Class** and **Class-Path** information.
+Set this file under [src/META-INF/MANIFEST.MF](04-managing-dependencies/src/META-INF/MANIFEST.MF)
+
+```manifest
+Manifest-Version: 1.0
+Main-Class: HelloThere
+Class-Path: gson-2.10.1.jar
+
+
+```
+
+_the two final empty lines are kinda important_.
+
+The build process will look pretty much the same, but once again we got able to
+hide some internals:
+
+```bash
+cd 04-managing-dependencies
+javac -d bin -cp bin src/Item.java
+javac -d bin -cp bin src/Quotes.java
+javac -d bin -cp bin:lib/gson-2.10.1.jar src/Grievous.java
+javac -d bin -cp bin src/HelloThere.java
+jar cvfm target/star-wars-2.jar src/META-INF/MANIFEST.MF -C bin .
+cp lib/gson-2.10.1.jar target/gson-2.10.1.jar
+java -jar target/star-wars-2.jar
+```
+
+Note that since the `Class-Path` is calculated from the jar location and not
+from the point of execution, we must moe our 3rd-party library from lib folder
+to target folder.
+
+And **YES**, too much effort for just **one** dependency. 
+Imagine having hundreds of them, like enterprise java projects have!
 
 ## 05-ant-project
 

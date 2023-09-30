@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" build-on-make="true" name="03-package-as-jar:jar">
+    <output-path>$PROJECT_DIR$/03-package-as-jar/target</output-path>
+    <root id="archive" name="star-wars.jar">
+      <element id="module-output" name="03-package-as-jar" />
+    </root>
+  </artifact>
+</component>
