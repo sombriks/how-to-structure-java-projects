@@ -281,6 +281,100 @@ mvn clean package exec:java
 When stuff went full madness.
 
 ```bash
+cd 07-gradle-project
+gradle init \
+  --type java-application \
+  --dsl groovy \
+  --test-framework junit-jupiter \
+  --package sample.structure \
+  --project-name 07-gradle-project \
+  --no-split-project
+```
+
+Note that this command line isn't enough and it still enters into interactive
+mode and asks additional configs. 
+
+The built project follows most conventions invented by maven. It is this way to
+make things easier to you to import an existing maven project.
+
+The generated project layout is something as well:
+
+```bash
+07-gradle-project
+├── app
+│   ├── build.gradle
+│   └── src
+│       ├── main
+│       │   ├── java
+│       │   │   └── sample
+│       │   │       └── structure
+│       │   │           └── App.java
+│       │   └── resources
+│       └── test
+│           ├── java
+│           │   └── sample
+│           │       └── structure
+│           │           └── AppTest.java
+│           └── resources
+├── gradle
+│   └── wrapper
+│       ├── gradle-wrapper.jar
+│       └── gradle-wrapper.properties
+├── gradlew
+├── gradlew.bat
+├── messages.json
+└── settings.gradle
+```
+
+It not only added the [wrapper](https://docs.gradle.org/current/userguide/gradle_wrapper.html)
+plugin but also defined a [submodule](https://docs.gradle.org/current/userguide/multi_project_builds.html)
+to house the application code.
+
+And last but not least important, the [build.gradle](07-gradle-project/app/build.gradle)
+file which is the gradle equivalent to a `pom.xml` file:
+
+```groovy
+plugins {
+    id 'application'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.9.3'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+
+    implementation 'com.google.guava:guava:32.1.1-jre'
+    implementation 'com.google.code.gson:gson:2.10.1'
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
+
+application {
+    mainClass = 'sample.structure.HelloThere'
+    // to fix an issue with the submodule
+    tasks.run.workingDir = rootProject.projectDir
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
+```
+
+It has the same declarative principle that a maven pom.xml has, but it uses a
+full-featured script language. Because.
+
+You run your project with this command:
+
+```bash
+cd 07-gradle-project
+./gradlew run
 ```
 
 ## 08-packaging-as-docker-image 

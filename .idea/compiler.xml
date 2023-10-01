@@ -9,5 +9,9 @@
         <module name="06-maven-project" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="07-gradle-project.main" target="17" />
+      <module name="07-gradle-project.test" target="17" />
+    </bytecodeTargetLevel>
   </component>
 </project>
