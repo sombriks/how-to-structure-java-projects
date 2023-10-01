@@ -278,7 +278,7 @@ mvn clean package exec:java
 
 ## 07-gradle-project
 
-When stuff went full madness.
+This is when stuff go full madness.
 
 ```bash
 cd 07-gradle-project
@@ -377,13 +377,6 @@ cd 07-gradle-project
 ./gradlew run
 ```
 
-## 08-packaging-as-docker-image 
-
-That one isn't a Java thing, it just what everything nowadays looks like.
-
-```bash
-```
-
 ## Conclusion
 
 No one needs to start right up into complex tools for java projects. On the
@@ -392,5 +385,5 @@ things end up like this and, more important, what opportunities all those
 indirection levels bring up.
 
 One thing not even mentioned on this project was IDE-specific configurations.
-Those ones has their own history and are worth to know and understand, but that
+Those have their own history and are worth to know and understand, but that
 topic will be visited in another moment. Eventually.
