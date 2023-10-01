@@ -1,6 +1,7 @@
 # [how-to-structure-java-projects](https://github.com/sombriks/how-to-structure-java-projects)
 
-Sampling some project layouts to present in this article.
+Sampling some project layouts to present in
+[this article](https://sombriks.com/blog/0057-how-to-structure-a-java-project-part-2/).
 
 ## Disclaimer
 
