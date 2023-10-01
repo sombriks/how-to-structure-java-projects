@@ -4,3 +4,4 @@ out
 /04-managing-dependencies/target/star-wars-2.jar
 /05-ant-project/bin/
 /05-ant-project/target/
+/06-maven-project/target

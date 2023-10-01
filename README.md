@@ -188,10 +188,32 @@ to deal with them as well.
 
 Maven is when things get a little complicated. It is more declarative than
 imperative (ant has his tasks grouped inside targets) and enforces a very
-specific folder structure. It needs internet to work properly
+specific folder structure. It needs internet to work properly. It takes control.
+
+For instance, maven has one of the ugliest command lines ever conceived to init
+an empty project:
 
 ```bash
+mvn archetype:generate -DinteractiveMode=false \
+                       -DgroupId=sample.structure \
+                       -DartifactId=06-maven-project \
+                       -DarchetypeGroupId=org.apache.maven.archetypes \
+                       -DarchetypeArtifactId=maven-archetype-quickstart \
+                       -DarchetypeVersion=1.4
 ```
+
+And we kinda lose the simple command line to execute the program. It becomes
+this abomination:
+
+```bash
+cd 06-maven-project
+mvn clean package
+java -cp ~/.m2/repository/com/google/code/gson/gson/2.10.1/gson-2.10.1.jar:target/06-maven-project-1.0-SNAPSHOT.jar sample.structure.HelloThere
+```
+
+You can add the exec plugin to try to make things a little more bearable:
+
+
 
 ## 07-gradle-project
 
